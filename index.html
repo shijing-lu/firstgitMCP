@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人简历</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <header class="profile-header">
+            <div class="avatar-container">
+                <img class="avatar" src="https://via.placeholder.com/100" alt="头像">
+            </div>
+            <div class="basic-info">
+                <h1>{{ name }}</h1>
+                <p class="title">{{ title }}</p>
+                <div class="contact-info">
+                    <span v-for="(value, key) in contactInfo" :key="key" class="info-item">
+                        <i :class="'icon-' + key"></i>
+                        {{ value }}
+                    </span>
+                </div>
+            </div>
+        </header>
+
+        <section class="education">
+            <h2>教育经历</h2>
+            <div class="education-item" v-for="edu in education" :key="edu.school">
+                <div class="edu-header">
+                    <h3>{{ edu.degree }}</h3>
+                    <span class="time">{{ edu.time }}</span>
+                </div>
+                <p class="school">{{ edu.school }} {{ edu.major }}</p>
+                <ul class="achievements">
+                    <li v-for="achievement in edu.achievements" :key="achievement">{{ achievement }}</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="skills">
+            <h2>技能清单</h2>
+            <ul class="skill-list">
+                <li v-for="skill in skills" :key="skill">{{ skill }}</li>
+            </ul>
+        </section>
+
+        <section class="projects">
+            <h2>项目经历</h2>
+            <div class="project-item" v-for="project in projects" :key="project.name">
+                <div class="project-header">
+                    <h3>{{ project.name }}</h3>
+                    <span class="time">{{ project.time }}</span>
+                </div>
+                <p class="description">{{ project.description }}</p>
+                <div class="tech-stack">
+                    <span v-for="tech in project.techStack" :key="tech" class="tech-tag">{{ tech }}</span>
+                </div>
+                <ul class="highlights">
+                    <li v-for="point in project.highlights" :key="point">{{ point }}</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="self-evaluation">
+            <h2>个人评价</h2>
+            <p>{{ selfEvaluation }}</p>
+        </section>
+    </div>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
